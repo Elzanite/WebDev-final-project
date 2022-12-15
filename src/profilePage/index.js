@@ -42,6 +42,7 @@ const OtherUser = (username) => {
           <h6>Username:</h6>
           <h6>{profile.username}</h6>
         </div>
+        <br/>
 
         <div className="align-left top-margin">
             <h6>This user is a {Selling(profile)}</h6>
