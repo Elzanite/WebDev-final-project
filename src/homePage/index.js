@@ -1,5 +1,6 @@
 import React from "react";
 import '../vendors/fontawesome-free-6.0.0-beta2-web/css/all.min.css'
+
 import ProductFeed from "../productFeed";
 import Sidebar from "../sidebar";
 import {Route, Routes, useNavigate} from "react-router-dom";
@@ -52,7 +53,7 @@ const HomePage = (props) => {
             <div className="col-9">
               {/* //<SearchBar/> */}
               <Routes>
-                {/* <Route path="/" exact element={<ProductFeed/>}/> */}
+                <Route path="/" exact element={<ProductFeed/>}/>
                 <Route path="/categories" element={<Categories/>}/>
                 <Route path="/products" element={<ProductsList/>}/>
                 <Route path="/products/:id" element={<ProductPage user={props.user} cart={props.cart} setCart={props.setCart}/>}/>

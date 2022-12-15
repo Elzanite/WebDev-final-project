@@ -2,6 +2,7 @@ import './App.css';
 import HomePage from "./homePage";
 import React, {useState} from "react";
 import './vendors/fontawesome-free-6.0.0-beta2-web/css/all.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import LoginPage from "./loginPage";
 import RegisterPage from "./registerPage";
