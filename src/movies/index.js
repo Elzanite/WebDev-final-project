@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {createMoviesThunk, deleteMovieThunk, findAllMoviesThunk} from "./movies-thunks";
 import {userLikesMovieThunk} from "../likes/likes-thunks";
+import NavigationSidebar from "./sidebar";
 
 const Movies = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -18,6 +19,12 @@ const Movies = () => {
                 currentUser &&
                 <h2>Welcome {currentUser.username} </h2>
             }
+            <div className="row mt-2">
+                <div className="col-2 col-md-2 col-lg-1 col-xl-2">
+                    <NavigationSidebar active="home"/>
+                </div>
+                <div className="col-10 col-md-10 col-lg-7 col-xl-6"
+                     style={{"position": "relative"}}>
             <ul className="list-group">
                 <li className="list-group-item">
                     <button className="btn btn-success float-end" onClick={() => {
@@ -55,6 +62,8 @@ const Movies = () => {
                     )
                 }
             </ul>
+                </div>
+            </div>
         </>
     )
 }
