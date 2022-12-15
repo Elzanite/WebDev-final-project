@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
-const GenericInfo = (username) => {
+const OtherUser = (username) => {
   const [profile, setProfile] = useState([]);
 
   useEffect(() => {
@@ -12,6 +12,14 @@ const GenericInfo = (username) => {
       dob: res.dob.slice(0,10)
     }));
   }, [username])
+
+    const Selling = (profile) => {
+        if (profile.isSeller) {
+            return('seller')
+        } else {
+            return('buyer');
+        }
+    };
 
   return (
       <div className="global-font">
@@ -34,31 +42,30 @@ const GenericInfo = (username) => {
           <h6>Username:</h6>
           <h6>{profile.username}</h6>
         </div>
-        <br/>
 
         <div className="align-left top-margin">
-          <h6>Date of Birth:</h6>
-          <h6>{profile.dob}</h6>
+            <h6>This user is a {Selling(profile)}</h6>
         </div>
-        <br/>
 
-        <div className="align-left top-margin">
-          <h6>Address:</h6>
-          <h6>{profile.address}</h6>
-        </div>
       </div>
   )
 };
 
 
-const LoggedIn = (user, setUser) => {
+const LoggedInUser = (user, setUser) => {
 
   const [first, setFirst] = useState(user.first);
   const [last, setLast] = useState(user.last);
   const [username, setUsername] = useState(user.username);
   const [dob, setDob] = useState(user.dob.slice(0, 10));
   const [address, setAddress] = useState(user.address);
-
+  const Selling = (profile) => {
+      if (user.isSeller) {
+          return('seller')
+      } else {
+          return('buyer');
+      }
+  };
 
   const handleChange = (event) => {
     switch (event.target.id) {
@@ -102,7 +109,7 @@ const LoggedIn = (user, setUser) => {
 
   return(
       <div className="global-font">
-        <h1 className="global-font highlighted-text">{user.username}'s Profile</h1>
+        <h1 className="global-font highlighted-text">Your Profile</h1>
         <h4>Info:</h4>
         <div className="align-left top-margin">
           <h6>First Name:</h6>
@@ -128,6 +135,10 @@ const LoggedIn = (user, setUser) => {
           <h6>Address:</h6>
           <input id="address" className="form-control" value={address} onChange={handleChange}/>
         </div> <br/>
+
+        <div className="align-left top-margin">
+            <h6>You are a {Selling(user)}</h6>
+        </div>
         <button id="update" className="btn btn-primary" onClick={handleChange}>Update</button>
       </div>
       )
@@ -138,9 +149,9 @@ const ProfilePage = (props) => {
   if (props.user.first === undefined) {
     return(<h1 className="global-font highlighted-text">Please Log In To View Profile</h1>);
   } else if (props.user.username === params.username) { 
-    return (LoggedIn(props.user, props.setUser))
+    return (LoggedInUser(props.user, props.setUser))
   } else {  
-    return(GenericInfo(params.username));
+    return(OtherUser(params.username));
   }
 
 };

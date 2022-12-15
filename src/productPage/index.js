@@ -9,7 +9,6 @@ const ProductPage = (props) => {
   const [product, setProduct] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [review, setReview] = useState("");
-  const [rating, setRating] = useState([]);
   const [order, setOrder] = useState({productId: [], quantity: [], img: "", title: ""})
 
   useEffect(() => {
@@ -49,9 +48,6 @@ const ProductPage = (props) => {
         console.log(props.cart)
         setOrder({productId: order.productId, quantity: event.target.value, img: order.img, title: product.title});
         return;
-      case 'rating':
-        setRating(event.target.value);
-        return;
       case 'review':
         setReview(event.target.value);
         return;
@@ -64,7 +60,6 @@ const ProductPage = (props) => {
             first: props.user.first,
             last: props.user.last,
             body: review,
-            rating: rating
           }),
           headers: {
             'content-type':'application/json'
@@ -75,7 +70,6 @@ const ProductPage = (props) => {
           result
         ]));
 
-        setRating([]);
         setReview([]);
         return;
       default:
@@ -89,17 +83,11 @@ const ProductPage = (props) => {
         <div>
               <input id="review" className="form-control-lg container-fluid top-margin"
                      value={review} onChange={handlePurchase} placeholder="Review here"/>
-          <div className="row">
-            <div className="col-2">
-              <input id="rating" type="number" max="5" min="0" value={rating} className="form-control top-margin container-fluid"
-                     onChange={handlePurchase} placeholder="Rating"/>
-            </div>
             <div className="col-2">
               <button id="review-click" className="btn btn-primary review-bottom-margin top-margin" onClick={handlePurchase}>
                 Post
               </button>
             </div>
-          </div>
         </div>)
   }
 
@@ -130,7 +118,7 @@ const ProductPage = (props) => {
           return(
               <div className="align-left">
                 <Link to={"/profile/" + review.username}>
-                  <h4>{review.username} -  {review.rating} <i className="far fa-star"></i></h4>
+                  <h4>{review.username}</h4>
                 </Link>
                 <div className="top-margin global-font review-bottom-margin"> {review.body}</div>
               </div>

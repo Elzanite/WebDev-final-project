@@ -6,7 +6,7 @@ const Sidebar = (props) => {
       <div className="top-margin">
 
         <div>
-          <h1 className="remove-decoration">
+          <h1>
             <Link to="/" className="global-font text-color remove-decoration">
               Shoppy
             </Link>
