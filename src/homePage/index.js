@@ -51,7 +51,7 @@ const HomePage = (props) => {
               <Sidebar user={props.user}/>
             </div>
             <div className="col-9">
-              {/* //<SearchBar/> */}
+              <SearchBar/>
               <Routes>
                 <Route path="/" exact element={<ProductFeed/>}/>
                 <Route path="/categories" element={<Categories/>}/>
