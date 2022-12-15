@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const SEARCH_URL = 'https://omdbapi.com/?apikey=852159f0&s='
-const DETAILS_URL = 'https://omdbapi.com/?apikey=852159f0&i='
+const SEARCH_URL = 'https://omdbapi.com/?apikey=dd18948e&s='
+const DETAILS_URL = 'https://omdbapi.com/?apikey=dd18948e&i='
 
 export const findMovieBySearchTerm = async (term) => {
     const response = await axios.get(`${SEARCH_URL}${term}`)
